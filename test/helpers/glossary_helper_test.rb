@@ -21,7 +21,7 @@ class GlossaryHelperTest < ActionView::TestCase
     result = mark_glossary_terms(text)
 
     assert_includes result, 'class="glossary-term"'
-    assert_includes result, 'basidiospores'
+    assert_includes result, "basidiospores"
   end
 
   test "mark_glossary_terms returns original text when no terms match" do

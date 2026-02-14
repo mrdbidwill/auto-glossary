@@ -66,10 +66,10 @@ group :development do
 end
 
 # CSV handling (for Wikipedia data processing)
-gem 'csv'
+gem "csv"
 
 # Load environment variables from .env file
-gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem "dotenv-rails", require: "dotenv/rails-now"
 
   # Mocking and stubbing library for tests
   gem "mocha"

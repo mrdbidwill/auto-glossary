@@ -1,9 +1,9 @@
-require 'net/http'
-require 'json'
+require "net/http"
+require "json"
 
 class WikipediaGlossaryService
-  GLOSSARY_PAGE = 'Glossary_of_mycology'
-  API_ENDPOINT = 'https://en.wikipedia.org/w/api.php'
+  GLOSSARY_PAGE = "Glossary_of_mycology"
+  API_ENDPOINT = "https://en.wikipedia.org/w/api.php"
   CACHE_EXPIRY = 24.hours
 
   class << self
@@ -29,8 +29,8 @@ class WikipediaGlossaryService
       end
 
       # Try removing plural 's' if no match found
-      if normalized_term.end_with?('s') && !normalized_term.end_with?('ss')
-        singular = normalized_term.chomp('s')
+      if normalized_term.end_with?("s") && !normalized_term.end_with?("ss")
+        singular = normalized_term.chomp("s")
         definition = terms[singular]
         return definition if definition
 
@@ -41,8 +41,8 @@ class WikipediaGlossaryService
       end
 
       # Try removing 'es' ending (e.g., "hyphes" -> "hypha")
-      if normalized_term.end_with?('es')
-        singular = normalized_term.chomp('es')
+      if normalized_term.end_with?("es")
+        singular = normalized_term.chomp("es")
         definition = terms[singular]
         return definition if definition
 
@@ -66,7 +66,7 @@ class WikipediaGlossaryService
 
     def normalize_term(term)
       # Remove hyphens, normalize spacing
-      term.to_s.strip.gsub(/[‐‑‒–—―]/, '-')
+      term.to_s.strip.gsub(/[‐‑‒–—―]/, "-")
     end
 
     def parse_glossary_page
@@ -79,25 +79,25 @@ class WikipediaGlossaryService
     def fetch_page_content
       uri = URI(API_ENDPOINT)
       params = {
-        action: 'parse',
+        action: "parse",
         page: GLOSSARY_PAGE,
-        format: 'json',
-        prop: 'text',
+        format: "json",
+        prop: "text",
         disableeditsection: 1,
         disabletoc: 1
       }
       uri.query = URI.encode_www_form(params)
 
       request = Net::HTTP::Get.new(uri)
-      request['User-Agent'] = "MRDBIDApp/1.0 (#{Rails.application.config.action_mailer.default_url_options[:host]}; Educational/Research)"
+      request["User-Agent"] = "MRDBIDApp/1.0 (#{Rails.application.config.action_mailer.default_url_options[:host]}; Educational/Research)"
 
       response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true, read_timeout: 10) do |http|
         http.request(request)
       end
 
-      if response.code == '200'
+      if response.code == "200"
         data = JSON.parse(response.body)
-        data.dig('parse', 'text', '*')
+        data.dig("parse", "text", "*")
       else
         Rails.logger.error "Wikipedia API error: #{response.code} - #{response.body}"
         nil
@@ -122,16 +122,16 @@ class WikipediaGlossaryService
     end
 
     def strip_html_tags(text)
-      text.gsub(/<\/?[^>]*>/, '')
-          .gsub(/\s+/, ' ')
+      text.gsub(/<\/?[^>]*>/, "")
+          .gsub(/\s+/, " ")
           .strip
     end
 
     def clean_definition(html)
       # Remove edit links, references, etc.
-      cleaned = html.gsub(/<span class="mw-editsection".*?<\/span>/m, '')
-                   .gsub(/<sup[^>]*>.*?<\/sup>/m, '')
-                   .gsub(/\[edit\]/i, '')
+      cleaned = html.gsub(/<span class="mw-editsection".*?<\/span>/m, "")
+                   .gsub(/<sup[^>]*>.*?<\/sup>/m, "")
+                   .gsub(/\[edit\]/i, "")
 
       strip_html_tags(cleaned).strip
     end

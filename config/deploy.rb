@@ -4,13 +4,13 @@ lock "~> 3.20.0"
 set :application, "auto_glossary"
 set :repo_url, "git@github.com:mrdbidwill/auto-glossary.git"
 
-set :branch, ENV.fetch('BRANCH', 'main')
+set :branch, ENV.fetch("BRANCH", "main")
 
 # Default deploy_to directory
 set :deploy_to, "/opt/auto-glossary"
 
 set :rbenv_type, :user
-set :rbenv_ruby, '3.4.3'
+set :rbenv_ruby, "3.4.3"
 
 # Puma configuration
 set :puma_bind, "unix://#{shared_path}/tmp/sockets/puma.sock"
@@ -31,10 +31,10 @@ set :keep_releases, 5
 
 # Restart Puma after deploy
 namespace :deploy do
-  desc 'Restart application'
+  desc "Restart application"
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      invoke 'puma:restart'
+      invoke "puma:restart"
     end
   end
 

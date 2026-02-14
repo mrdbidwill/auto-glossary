@@ -8,7 +8,7 @@ class GlossaryController < ApplicationController
 
     if term.blank?
       respond_to do |format|
-        format.json { render json: { error: 'Term parameter is required' }, status: :bad_request }
+        format.json { render json: { error: "Term parameter is required" }, status: :bad_request }
       end
       return
     end
@@ -19,13 +19,13 @@ class GlossaryController < ApplicationController
       if definition
         format.json { render json: { term: term, definition: definition } }
       else
-        format.json { render json: { error: 'Definition not found', term: term }, status: :not_found }
+        format.json { render json: { error: "Definition not found", term: term }, status: :not_found }
       end
     end
   rescue StandardError => e
     Rails.logger.error "Error fetching glossary definition: #{e.message}"
     respond_to do |format|
-      format.json { render json: { error: 'Internal server error' }, status: :internal_server_error }
+      format.json { render json: { error: "Internal server error" }, status: :internal_server_error }
     end
   end
 

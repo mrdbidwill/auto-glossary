@@ -10,11 +10,11 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Glossary routes
-  get 'glossary/definition', to: 'glossary#definition', defaults: { format: :json }
-  get 'glossary', to: 'glossary#index'
+  get "glossary/definition", to: "glossary#definition", defaults: { format: :json }
+  get "glossary", to: "glossary#index"
 
   # Demo page
-  get 'demo', to: 'pages#demo'
+  get "demo", to: "pages#demo"
 
   # Defines the root path route ("/")
   # root "posts#index"

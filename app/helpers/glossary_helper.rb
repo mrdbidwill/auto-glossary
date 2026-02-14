@@ -52,9 +52,9 @@ module GlossaryHelper
     normalized = term.downcase.strip
 
     # Remove common plural endings
-    if normalized.end_with?('s') && !normalized.end_with?('ss')
+    if normalized.end_with?("s") && !normalized.end_with?("ss")
       # Try removing 's' for simple plurals
-      singular = normalized.chomp('s')
+      singular = normalized.chomp("s")
 
       # Check if singular form exists in glossary
       terms = WikipediaGlossaryService.fetch_glossary_terms
