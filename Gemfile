@@ -39,6 +39,10 @@ gem "capistrano-rails", "~> 1.6", require: false
 gem "capistrano-rbenv", "~> 2.2", require: false
 gem "capistrano3-puma", "~> 6.0", require: false
 
+# SSH key support for ED25519
+gem "ed25519", "~> 1.3"
+gem "bcrypt_pbkdf", "~> 1.1"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
