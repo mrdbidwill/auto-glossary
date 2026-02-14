@@ -51,6 +51,9 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Use SQLite for test environment (no setup needed)
+  gem "sqlite3", "~> 2.0"
 end
 
 group :development do
@@ -60,3 +63,6 @@ end
 
 # CSV handling (for Wikipedia data processing)
 gem 'csv'
+
+  # Mocking and stubbing library for tests
+  gem "mocha"

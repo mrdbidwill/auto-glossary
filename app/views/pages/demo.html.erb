@@ -1,0 +1,34 @@
+<div class="max-w-4xl mx-auto py-8">
+  <h1 class="text-4xl font-bold mb-6">Auto-Glossary Demo</h1>
+
+  <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+    <h2 class="text-2xl font-semibold mb-4">Interactive Mycology Example</h2>
+
+    <div class="prose prose-lg">
+      <%= mark_glossary_terms("The basidiospores are produced by the basidium on the hymenium surface of the pileus. The mycelium forms hyphae that contain spores. The fruiting body displays a distinctive annulus near the stipe.") %>
+    </div>
+
+    <div class="mt-6 p-4 bg-blue-50 rounded border-l-4 border-blue-500">
+      <p class="text-sm text-gray-700">
+        <strong>How to use:</strong> Hover over underlined terms for quick definitions. Click for detailed information.
+      </p>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-lg shadow-lg p-8">
+    <h2 class="text-2xl font-semibold mb-4">Technical Details</h2>
+    <ul class="list-disc list-inside space-y-2 text-gray-700">
+      <li>Terms are automatically detected and highlighted</li>
+      <li>Definitions fetched from Wikipedia's Glossary of Mycology</li>
+      <li>Caching enabled (24 hours) for performance</li>
+      <li>Handles plurals and variations automatically</li>
+      <li>Fully keyboard accessible (Tab + Enter/Space)</li>
+    </ul>
+
+    <div class="mt-6">
+      <a href="/" class="text-blue-600 hover:text-blue-800 font-semibold">← Back to Home</a>
+      <span class="mx-4 text-gray-400">|</span>
+      <a href="/glossary" class="text-blue-600 hover:text-blue-800 font-semibold">Browse All Terms →</a>
+    </div>
+  </div>
+</div>
