@@ -69,7 +69,7 @@ end
 gem "csv"
 
 # Load environment variables from .env file
-gem "dotenv-rails", require: "dotenv/rails-now"
+gem "dotenv-rails", require: "dotenv/load"
 
   # Mocking and stubbing library for tests
   gem "mocha"
