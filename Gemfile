@@ -71,5 +71,8 @@ gem "csv"
 # Load environment variables from .env file
 gem "dotenv-rails", require: "dotenv/load"
 
+# Sitemap generation
+gem "sitemap_generator"
+
   # Mocking and stubbing library for tests
   gem "mocha"
