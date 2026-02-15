@@ -147,7 +147,7 @@ public/
 
 ## 🌐 Live Sites
 
-- Landing page: [auto-glossary.com](https://auto-glossary.com) (coming soon)
+- Landing page: [auto-glossary.com](https://auto-glossary.com) 
 - Demo: Run locally at `http://localhost:3001/demo`
 
 ## 🤝 Contributing
@@ -178,7 +178,14 @@ MIT License - Use freely in your projects, commercial or personal.
 
 ## 🤖 AI-Generated Code & Content
 
-**Full Transparency:** This project, including code, documentation, tests, and content, was created with significant AI assistance using Claude Code (Anthropic's AI-powered development tool).
+**Full Transparency:** This project, including code, documentation, tests, and content, was created with significant AI assistance using Claude Code (Anthropic's AI-powered development tool) within JetBrains RubyMine IDE via the JetBrains AI Assistant integration.
+
+**Development Environment:** The primary development tools used were:
+- JetBrains RubyMine IDE with JetBrains AI Assistant
+- Claude Code by Anthropic (accessed through JetBrains AI Assistant)
+- Standard Rails tooling and testing frameworks
+
+This combination proved effective for this project, though developers can use whatever tools work best for their workflow.
 
 **Data Source Reliability:** While Wikipedia's reliability varies by topic and is sometimes criticized as not being "scholarly," scientific glossaries—particularly in specialized fields like mycology—tend to be well-maintained. These pages are typically monitored by knowledgeable volunteers with domain expertise. Unlike politically charged topics, technical scientific glossaries generally avoid the controversies that affect other Wikipedia content.
 
