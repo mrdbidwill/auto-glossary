@@ -3,7 +3,20 @@
 module AutoGlossary
   class GlossaryController < ApplicationController
     skip_before_action :verify_authenticity_token, only: [:definition]
-    skip_before_action :authenticate_user!, raise: false if respond_to?(:authenticate_user!)
+
+    # Skip authentication if the host app uses Devise or similar
+    begin
+      skip_before_action :authenticate_user!, raise: false
+    rescue ArgumentError
+      # authenticate_user! is not defined, skip this
+    end
+
+    # Skip Pundit authorization if the host app uses Pundit
+    begin
+      skip_after_action :verify_authorized, raise: false
+    rescue ArgumentError
+      # verify_authorized is not defined, skip this
+    end
 
     # GET /glossary/definition?term=basidiospore
     def definition
