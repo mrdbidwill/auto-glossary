@@ -71,6 +71,9 @@ gem "csv"
 # Load environment variables from .env file
 gem "dotenv-rails", require: "dotenv/load"
 
+# Auto-glossary gem for term highlighting and definitions
+gem "auto_glossary"
+
 # Sitemap generation
 gem "sitemap_generator"
 

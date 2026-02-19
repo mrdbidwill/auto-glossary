@@ -9,9 +9,8 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  # Glossary routes
-  get "glossary/definition", to: "glossary#definition", defaults: { format: :json }
-  get "glossary", to: "glossary#index"
+  # Mount auto_glossary gem engine
+  mount AutoGlossary::Engine => "/glossary"
 
   # Demo page
   get "demo", to: "pages#demo"
