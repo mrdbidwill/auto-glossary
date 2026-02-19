@@ -3,6 +3,7 @@
 module AutoGlossary
   class GlossaryController < ApplicationController
     skip_before_action :verify_authenticity_token, only: [:definition]
+    skip_before_action :authenticate_user!, raise: false if respond_to?(:authenticate_user!)
 
     # GET /glossary/definition?term=basidiospore
     def definition
