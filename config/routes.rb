@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   # Demo page
   get "demo", to: "pages#demo"
 
+  # Gem documentation page
+  get "docs", to: "pages#gem_docs"
+
   # Defines the root path route ("/")
   # root "posts#index"
 end

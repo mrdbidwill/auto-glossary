@@ -1,0 +1,157 @@
+<div class="max-w-6xl mx-auto py-8 px-4">
+  <h1 class="text-4xl font-bold mb-6">Auto-Glossary Gem Documentation</h1>
+
+  <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+    <p class="text-lg">
+      <strong>Auto-Glossary</strong> is a Rails engine that automatically highlights and defines technical terms from Wikipedia glossaries in your Rails applications.
+    </p>
+  </div>
+
+  <!-- Installation Section -->
+  <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+    <h2 class="text-3xl font-semibold mb-4">Installation</h2>
+
+    <div class="space-y-4">
+      <div>
+        <h3 class="text-xl font-semibold mb-2">1. Add to your Gemfile</h3>
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto"><code>gem 'auto_glossary', '>= 0.1.1'</code></pre>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold mb-2">2. Install the gem</h3>
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto"><code>bundle install
+rails generate auto_glossary:install</code></pre>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold mb-2">3. Use in your views</h3>
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto"><code>&lt;%= mark_glossary_terms("Your content with technical terms") %&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+    <h2 class="text-3xl font-semibold mb-4">Features</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="text-xl font-semibold mb-2">🔍 Automatic Detection</h3>
+        <p class="text-gray-700">Automatically identifies and highlights technical terms in your content</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h3 class="text-xl font-semibold mb-2">📚 Wikipedia Integration</h3>
+        <p class="text-gray-700">Fetches definitions from Wikipedia's comprehensive glossaries</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h3 class="text-xl font-semibold mb-2">⚡ Performance</h3>
+        <p class="text-gray-700">Built-in caching (24 hours) for fast page loads</p>
+      </div>
+
+      <div class="border-l-4 border-orange-500 pl-4">
+        <h3 class="text-xl font-semibold mb-2">♿ Accessible</h3>
+        <p class="text-gray-700">Fully keyboard accessible with proper ARIA labels</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Configuration Section -->
+  <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+    <h2 class="text-3xl font-semibold mb-4">Configuration</h2>
+
+    <p class="mb-4">Customize Auto-Glossary in <code class="bg-gray-100 px-2 py-1 rounded">config/initializers/auto_glossary.rb</code>:</p>
+
+    <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto"><code>AutoGlossary.configure do |config|
+  # Wikipedia glossary URL (default: Glossary of mycology)
+  config.glossary_url = "https://en.wikipedia.org/wiki/Glossary_of_mycology"
+
+  # Cache expiration time in seconds (default: 24 hours)
+  config.cache_expiration = 86_400
+
+  # Enable/disable caching (default: true)
+  config.enable_caching = true
+end</code></pre>
+  </div>
+
+  <!-- Examples Section -->
+  <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+    <h2 class="text-3xl font-semibold mb-4">Usage Examples</h2>
+
+    <div class="space-y-6">
+      <div>
+        <h3 class="text-xl font-semibold mb-3">Mycology Content</h3>
+        <div class="bg-gray-50 p-4 rounded mb-2">
+          <p class="text-gray-700 italic">Input:</p>
+          <code class="text-sm">&lt;%= mark_glossary_terms("The basidiospores are produced on the hymenium.") %&gt;</code>
+        </div>
+        <div class="bg-blue-50 p-4 rounded">
+          <p class="text-gray-700 italic">Output:</p>
+          <%= mark_glossary_terms("The basidiospores are produced on the hymenium.") %>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold mb-3">Custom Glossary</h3>
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto"><code># Use a different Wikipedia glossary
+AutoGlossary.configure do |config|
+  config.glossary_url = "https://en.wikipedia.org/wiki/Glossary_of_biology"
+end</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Links Section -->
+  <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+    <h2 class="text-3xl font-semibold mb-4">Resources</h2>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="https://github.com/mrdbidwill/auto-glossary" class="block p-4 border-2 border-gray-200 rounded hover:border-blue-500 transition">
+        <h3 class="text-xl font-semibold text-blue-600 mb-2">📦 GitHub Repository</h3>
+        <p class="text-gray-600">View source code and contribute</p>
+      </a>
+
+      <a href="https://rubygems.org/gems/auto_glossary" class="block p-4 border-2 border-gray-200 rounded hover:border-blue-500 transition">
+        <h3 class="text-xl font-semibold text-blue-600 mb-2">💎 RubyGems Page</h3>
+        <p class="text-gray-600">View gem statistics and versions</p>
+      </a>
+
+      <a href="/demo" class="block p-4 border-2 border-gray-200 rounded hover:border-blue-500 transition">
+        <h3 class="text-xl font-semibold text-blue-600 mb-2">🎮 Live Demo</h3>
+        <p class="text-gray-600">Try it out interactively</p>
+      </a>
+
+      <a href="/glossary" class="block p-4 border-2 border-gray-200 rounded hover:border-blue-500 transition">
+        <h3 class="text-xl font-semibold text-blue-600 mb-2">📖 Browse Terms</h3>
+        <p class="text-gray-600">See all available glossary terms</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- Support Section -->
+  <div class="bg-white rounded-lg shadow-lg p-8">
+    <h2 class="text-3xl font-semibold mb-4">Support & Contributing</h2>
+
+    <div class="space-y-4 text-gray-700">
+      <p>
+        <strong>Found a bug?</strong> Please open an issue on
+        <a href="https://github.com/mrdbidwill/auto-glossary/issues" class="text-blue-600 hover:underline">GitHub</a>.
+      </p>
+
+      <p>
+        <strong>Want to contribute?</strong> Pull requests are welcome! Please read our contributing guidelines.
+      </p>
+
+      <p>
+        <strong>Need help?</strong> Check out our
+        <a href="https://github.com/mrdbidwill/auto-glossary/blob/main/README.md" class="text-blue-600 hover:underline">README</a>
+        or open a discussion on GitHub.
+      </p>
+    </div>
+
+    <div class="mt-6">
+      <a href="/" class="text-blue-600 hover:text-blue-800 font-semibold">← Back to Home</a>
+    </div>
+  </div>
+</div>
