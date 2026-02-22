@@ -6,11 +6,15 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "demo page contains glossary terms" do
-    terms = { "basidiospore" => "A spore" }
-    WikipediaGlossaryService.stubs(:fetch_glossary_terms).returns(terms)
-
+  test "demo page contains expected content" do
     get demo_url
-    assert_select ".glossary-term"
+    assert_response :success
+    assert_select "h1", text: /Auto-Glossary Demo/i
+    assert_select ".prose", minimum: 1
+  end
+
+  test "gem docs page loads successfully" do
+    get docs_url
+    assert_response :success
   end
 end

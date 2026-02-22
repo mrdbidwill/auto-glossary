@@ -14,3 +14,8 @@ module ActiveSupport
     # Add more helper methods to be used by all tests here...
   end
 end
+
+# Include the gem's helpers in view tests
+class ActionView::TestCase
+  include AutoGlossary::GlossaryHelper
+end

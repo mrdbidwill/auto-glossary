@@ -4,7 +4,7 @@ class GlossaryHelperTest < ActionView::TestCase
   test "mark_glossary_terms highlights known terms" do
     # Stub the service to return test data
     terms = { "basidiospore" => "A spore produced by a basidium" }
-    WikipediaGlossaryService.stubs(:fetch_glossary_terms).returns(terms)
+    AutoGlossary::WikipediaGlossaryService.stubs(:fetch_glossary_terms).returns(terms)
 
     text = "The basidiospore is important."
     result = mark_glossary_terms(text)
@@ -15,7 +15,7 @@ class GlossaryHelperTest < ActionView::TestCase
 
   test "mark_glossary_terms handles plurals" do
     terms = { "basidiospore" => "A spore produced by a basidium" }
-    WikipediaGlossaryService.stubs(:fetch_glossary_terms).returns(terms)
+    AutoGlossary::WikipediaGlossaryService.stubs(:fetch_glossary_terms).returns(terms)
 
     text = "The basidiospores are numerous."
     result = mark_glossary_terms(text)
@@ -25,7 +25,7 @@ class GlossaryHelperTest < ActionView::TestCase
   end
 
   test "mark_glossary_terms returns original text when no terms match" do
-    WikipediaGlossaryService.stubs(:fetch_glossary_terms).returns({})
+    AutoGlossary::WikipediaGlossaryService.stubs(:fetch_glossary_terms).returns({})
 
     text = "This has no glossary terms."
     result = mark_glossary_terms(text)
@@ -43,7 +43,7 @@ class GlossaryHelperTest < ActionView::TestCase
 
   test "mark_glossary_terms marks only first occurrence when first_only is true" do
     terms = { "hypha" => "A filament" }
-    WikipediaGlossaryService.stubs(:fetch_glossary_terms).returns(terms)
+    AutoGlossary::WikipediaGlossaryService.stubs(:fetch_glossary_terms).returns(terms)
 
     text = "The hypha grows. Another hypha appears."
     result = mark_glossary_terms(text, first_only: true)
@@ -54,7 +54,7 @@ class GlossaryHelperTest < ActionView::TestCase
 
   test "mark_glossary_terms marks all occurrences when first_only is false" do
     terms = { "hypha" => "A filament" }
-    WikipediaGlossaryService.stubs(:fetch_glossary_terms).returns(terms)
+    AutoGlossary::WikipediaGlossaryService.stubs(:fetch_glossary_terms).returns(terms)
 
     text = "The hypha grows. Another hypha appears."
     result = mark_glossary_terms(text, first_only: false)
