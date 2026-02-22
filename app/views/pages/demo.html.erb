@@ -1,34 +1,116 @@
-<div class="max-w-4xl mx-auto py-8">
-  <h1 class="text-4xl font-bold mb-6">Auto-Glossary Demo</h1>
+<div class="max-w-5xl mx-auto py-8 px-4">
+  <div class="mb-8">
+    <h1 class="text-4xl font-bold mb-2">Auto-Glossary Demo</h1>
+    <p class="text-lg text-gray-600">Interactive mycology glossary demonstration</p>
+  </div>
+
+  <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+    <p class="text-base">
+      <strong>How to use:</strong> Hover over dotted-underlined terms for quick definitions. Click any term for detailed information from Wikipedia's Glossary of Mycology.
+    </p>
+  </div>
 
   <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
-    <h2 class="text-2xl font-semibold mb-4">Interactive Mycology Example</h2>
+    <h2 class="text-3xl font-bold mb-6 text-gray-900">RUSSULA Fr.</h2>
 
-    <div class="prose prose-lg">
-      <%= mark_glossary_terms("The basidiospores are produced by the basidium on the hymenium surface of the pileus. The mycelium forms hyphae that contain spores. The fruiting body displays a distinctive annulus near the stipe.") %>
-    </div>
-
-    <div class="mt-6 p-4 bg-blue-50 rounded border-l-4 border-blue-500">
-      <p class="text-sm text-gray-700">
-        <strong>How to use:</strong> Hover over underlined terms for quick definitions. Click for detailed information.
+    <div class="prose prose-lg max-w-none">
+      <p class="italic text-gray-700 mb-4">
+        <%= raw mark_glossary_terms("From the Latin, russula, reddish.") %>
       </p>
+
+      <div class="space-y-4 text-gray-800">
+        <p>
+          <%= raw mark_glossary_terms("Veil, none; the trama composed of vesiculose tissue, without a milky juice; gills rigid, fragile, acute on edge; stem central, confluent with the pileus; spores globose or subglobose, usually echinulate or verrucose, white cream-color, yellow or ochraceous.") %>
+        </p>
+
+        <p>
+          <%= raw mark_glossary_terms("Fleshy, putrescent, rigid-brittle mushrooms, mostly terrestrial, a few on much decayed wood, on sphagnum or on other mosses. A very distinct genus, most closely related to Lactarius, from which it differs by its lack of a milky juice. Hygrophorus differs in the thicker and more waxy nature of the gills although here there are evident certain signs of relationship with the species of Russula. Almost all of the species are edible after careful cooking since even the peppery forms then lose their sharp taste; in any case the mild species are perfectly safe when fresh, young and clean.") %>
+        </p>
+
+        <p>
+          <%= raw mark_glossary_terms("The pileus may be red, purple, violet, bluish, yellow, green, or white, except in the Compactae, a differentiated pellicle is present on the surface of the cap. This pellicle is often composed of more or less gelatinous hyphae and becomes viscid in wet weather, or it may remain dry and become pruinose or velvety. The pellicle is somewhat separable along the margin of the pileus and in many of the Fragiles can be peeled easily on the whole surface. The margin of the pileus is often striate at least in age. In the species with a thin cap, the lines of attachment of the gills to the cap show through as raised ridges which are often tuberculate because of the presence of the interspacial veins beneath and these striae may extend far toward the center of the pileus. In the species with firm and thick caps, the striations are not as marked or are obscurely developed on the margin only when the plant becomes old. Still, this character is so variable that it must be used with caution as a diagnostic character. The surface is usually glabrous or merely pruinose to velvety; the latter appearance is due to cystidia-like erect hyphae closely covering the pellicle.") %>
+        </p>
+      </div>
     </div>
   </div>
 
-  <div class="bg-white rounded-lg shadow-lg p-8">
-    <h2 class="text-2xl font-semibold mb-4">Technical Details</h2>
-    <ul class="list-disc list-inside space-y-2 text-gray-700">
-      <li>Terms are automatically detected and highlighted</li>
-      <li>Definitions fetched from Wikipedia's Glossary of Mycology</li>
-      <li>Caching enabled (24 hours) for performance</li>
-      <li>Handles plurals and variations automatically</li>
-      <li>Fully keyboard accessible (Tab + Enter/Space)</li>
-    </ul>
+  <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+    <h2 class="text-2xl font-semibold mb-4">How to Integrate Into Your Rails App</h2>
 
-    <div class="mt-6">
-      <a href="/" class="text-blue-600 hover:text-blue-800 font-semibold">← Back to Home</a>
-      <span class="mx-4 text-gray-400">|</span>
-      <a href="/glossary" class="text-blue-600 hover:text-blue-800 font-semibold">Browse All Terms →</a>
+    <div class="space-y-6">
+      <div>
+        <h3 class="text-xl font-semibold mb-2 text-gray-900">1. Add to your Gemfile</h3>
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto text-sm"><code>gem 'auto_glossary'</code></pre>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold mb-2 text-gray-900">2. Install and setup</h3>
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto text-sm"><code>bundle install
+rails generate auto_glossary:install</code></pre>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold mb-2 text-gray-900">3. Use in your views</h3>
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto text-sm"><code>&lt;%= raw mark_glossary_terms(@article.body) %&gt;</code></pre>
+        <p class="mt-2 text-sm text-gray-600">
+          The helper automatically detects and marks mycology terms with interactive tooltips.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+    <h2 class="text-2xl font-semibold mb-4">Features</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border-l-4 border-green-500 pl-4">
+        <h3 class="text-lg font-semibold mb-2">🔍 Automatic Detection</h3>
+        <p class="text-gray-700">Identifies mycology terms automatically without manual markup</p>
+      </div>
+
+      <div class="border-l-4 border-purple-500 pl-4">
+        <h3 class="text-lg font-semibold mb-2">📚 Wikipedia Integration</h3>
+        <p class="text-gray-700">Definitions from Wikipedia's comprehensive Glossary of Mycology</p>
+      </div>
+
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h3 class="text-lg font-semibold mb-2">⚡ High Performance</h3>
+        <p class="text-gray-700">24-hour caching for fast page loads and reduced API calls</p>
+      </div>
+
+      <div class="border-l-4 border-yellow-500 pl-4">
+        <h3 class="text-lg font-semibold mb-2">♿ Accessible</h3>
+        <p class="text-gray-700">Full keyboard navigation support (Tab + Enter/Space)</p>
+      </div>
+
+      <div class="border-l-4 border-red-500 pl-4">
+        <h3 class="text-lg font-semibold mb-2">🎨 Customizable</h3>
+        <p class="text-gray-700">Style tooltips and modals to match your design</p>
+      </div>
+
+      <div class="border-l-4 border-indigo-500 pl-4">
+        <h3 class="text-lg font-semibold mb-2">🔄 Smart Matching</h3>
+        <p class="text-gray-700">Handles plurals and word variations automatically</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-lg p-8">
+    <h2 class="text-2xl font-semibold mb-4">Related Projects</h2>
+    <div class="grid md:grid-cols-3 gap-4">
+      <a href="https://mrdbid.com" class="block p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+        <h3 class="text-lg font-semibold text-blue-600 mb-2">MrDbId.com</h3>
+        <p class="text-sm text-gray-600">Comprehensive mushroom identification database using auto-glossary</p>
+      </a>
+
+      <a href="https://mycowriter.com" class="block p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+        <h3 class="text-lg font-semibold text-purple-600 mb-2">Mycowriter.com</h3>
+        <p class="text-sm text-gray-600">Autocomplete gem for fungal genus and species names</p>
+      </a>
+
+      <a href="/docs" class="block p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+        <h3 class="text-lg font-semibold text-green-600 mb-2">Full Documentation</h3>
+        <p class="text-sm text-gray-600">Complete API reference and integration guide</p>
+      </a>
     </div>
   </div>
 </div>
