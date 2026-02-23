@@ -156,6 +156,72 @@
         font-size: 0.9rem;
     }
 
+    .demo-button {
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 18px 50px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.2rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        margin: 20px 10px 10px 10px;
+    }
+
+    .demo-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .related-projects {
+        margin-top: 40px;
+        padding: 30px;
+        background: #f7fafc;
+        border-radius: 8px;
+    }
+
+    .related-projects h3 {
+        color: #2d3748;
+        margin-bottom: 20px;
+        font-size: 1.3rem;
+    }
+
+    .project-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .project-link {
+        display: block;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        text-decoration: none;
+        border: 2px solid #e2e8f0;
+        transition: all 0.3s ease;
+    }
+
+    .project-link:hover {
+        border-color: #667eea;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+    }
+
+    .project-link h4 {
+        color: #667eea;
+        margin-bottom: 8px;
+        font-size: 1.1rem;
+    }
+
+    .project-link p {
+        color: #718096;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
     .use-cases {
         background: #edf2f7;
         padding: 25px;
@@ -271,12 +337,33 @@
         <p style="color: #4a5568; margin-bottom: 25px;">
             Core functionality is working! Integrate into your Rails project or contribute to future development.
         </p>
+        <a href="/demo" class="demo-button">
+            🔬 Try Interactive Demo →
+        </a>
+        <br>
         <a href="mailto:will@mrdbid.com?subject=Auto-Glossary" class="email-link">
             📧 Contact
         </a>
         <a href="https://github.com/mrdbidwill/auto-glossary" class="github-link">
             ⭐ View on GitHub
         </a>
+        <a href="/docs" class="github-link" style="background: #48bb78;">
+            📚 Documentation
+        </a>
+    </div>
+
+    <div class="related-projects">
+        <h3>Related Projects</h3>
+        <div class="project-links">
+            <a href="https://mrdbid.com" class="project-link" target="_blank" rel="noopener">
+                <h4>🍄 MRDBID.com</h4>
+                <p>A personal mushroom storage notebook and much more..</p>
+            </a>
+            <a href="https://mycowriter.com" class="project-link" target="_blank" rel="noopener">
+                <h4>✍️ Mycowriter.com</h4>
+                <p>Autocomplete gem for fungal genus and species names</p>
+            </a>
+        </div>
     </div>
 
     <div class="footer">
@@ -288,15 +375,6 @@
         </p>
         <p style="margin-top: 10px; font-size: 0.85rem; color: #95a5a6; font-style: italic;">
             This project and its content were created with AI assistance. Code, documentation, and text were generated using Claude Code, an AI-powered development tool.
-        </p>
-        <p style="margin-top: 20px;">
-            <a href="https://mrdbid.com" style="color: #667eea; text-decoration: none; font-weight: 600; font-size: 1.1rem;">
-                🍄 Visit MRDBID.com
-            </a>
-            <br>
-            <span style="color: #718096; font-size: 0.95rem; margin-top: 8px; display: inline-block;">
-                A personal mushroom storage notebook and much more...
-            </span>
         </p>
     </div>
 </div>
