@@ -28,17 +28,17 @@ threads_count = ENV.fetch("RAILS_MAX_THREADS", 3)
 threads threads_count, threads_count
 
 # Production vs Development configuration
-if ENV['RAILS_ENV'] == 'production'
+if ENV["RAILS_ENV"] == "production"
   # Use Unix socket in production (faster, more secure)
   bind "unix://#{ENV['PUMA_SOCKET'] || '/opt/auto-glossary/shared/tmp/sockets/puma.sock'}"
 
   # Set up pid and state files for process management
-  pidfile ENV['PUMA_PID'] || '/opt/auto-glossary/shared/tmp/pids/puma.pid'
-  state_path ENV['PUMA_STATE'] || '/opt/auto-glossary/shared/tmp/pids/puma.state'
+  pidfile ENV["PUMA_PID"] || "/opt/auto-glossary/shared/tmp/pids/puma.pid"
+  state_path ENV["PUMA_STATE"] || "/opt/auto-glossary/shared/tmp/pids/puma.state"
 
   # Logging - redirects stdout/stderr to log files
-  stdout_redirect ENV['PUMA_STDOUT'] || '/opt/auto-glossary/shared/log/puma_stdout.log',
-                  ENV['PUMA_STDERR'] || '/opt/auto-glossary/shared/log/puma_stderr.log', true
+  stdout_redirect ENV["PUMA_STDOUT"] || "/opt/auto-glossary/shared/log/puma_stdout.log",
+                  ENV["PUMA_STDERR"] || "/opt/auto-glossary/shared/log/puma_stderr.log", true
 else
   # Use TCP port in development
   port ENV.fetch("PORT", 3000)

@@ -3,8 +3,8 @@ SitemapGenerator::Sitemap.default_host = "https://auto-glossary.com"
 
 SitemapGenerator::Sitemap.create do
   # Add main pages
-  add glossary_path, priority: 0.9, changefreq: 'daily'
-  add demo_path, priority: 0.7, changefreq: 'weekly'
+  add glossary_path, priority: 0.9, changefreq: "daily"
+  add demo_path, priority: 0.7, changefreq: "weekly"
 
   # Add individual glossary terms
   # Fetching all terms from the Wikipedia glossary service
@@ -14,6 +14,6 @@ SitemapGenerator::Sitemap.create do
     # We won't add individual definition API endpoints, but we could add term-specific pages if they exist
     add "#{glossary_path}##{CGI.escape(term.downcase.gsub(' ', '-'))}",
         priority: 0.6,
-        changefreq: 'monthly'
+        changefreq: "monthly"
   end
 end
