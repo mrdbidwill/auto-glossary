@@ -4,10 +4,10 @@ Making technical content accessible by automatically highlighting specialized te
 
 ## 🚀 Status
 
-**Core functionality:** ✅ Working and usable
-**Gem extraction:** Planned for future
+**Standalone gem:** ✅ Ready to use as a Rails engine
+**Demo app/docs:** ✅ Included in this repository
 
-This Rails application demonstrates fully functional auto-glossary capabilities. The core features work and can be integrated into any Rails project by copying the relevant files. Future plans include extracting this into a standalone Ruby gem.
+Auto-Glossary is now a standalone Ruby gem you can add to any Rails app. This repository includes a small Rails application used to demo the gem, host documentation pages, and test changes.
 
 **Contributions welcome!** This is open source software - use it, improve it, adapt it for your needs.
 
@@ -44,7 +44,8 @@ With Auto-Glossary, each technical term becomes interactive with hover definitio
 
 ## 🛠️ Tech Stack
 
-- Ruby on Rails 8
+- Ruby gem (Rails engine)
+- Rails 8 demo app
 - Stimulus JS (Hotwired)
 - Tailwind CSS
 - Wikipedia API
@@ -52,51 +53,70 @@ With Auto-Glossary, each technical term becomes interactive with hover definitio
 
 ## 🚀 Quick Start
 
-### Local Development
+### Install in Your Rails App
+
+Add the gem:
+
+```ruby
+# Gemfile
+gem "auto_glossary", ">= 0.1.1"
+```
+
+Install and run the installer:
 
 ```bash
-# Clone the repository
+bundle install
+rails generate auto_glossary:install
+```
+
+Mount the engine (required for `/glossary` and the definition endpoint):
+
+```ruby
+# config/routes.rb
+mount AutoGlossary::Engine => "/glossary"
+```
+
+Ensure the Stimulus controller is active (often on `<body>`):
+
+```erb
+<body data-controller="glossary">
+```
+
+Use it in views:
+
+```erb
+<%= mark_glossary_terms(@article.body) %>
+```
+
+### Local Development (Demo App)
+
+```bash
 git clone https://github.com/mrdbidwill/auto-glossary.git
 cd auto-glossary
 
-# Install dependencies
 bundle install
 
-# Start the server
 rails server -p 3001
 
-# Visit the demo
 open http://localhost:3001/demo
 ```
 
-### Using in Your Rails Project
+## ⚙️ Configuration
 
-Copy these files to your Rails app:
+The installer creates `config/initializers/auto_glossary.rb`. Customize it as needed:
 
-1. **Backend:**
-   - `app/services/wikipedia_glossary_service.rb`
-   - `app/helpers/glossary_helper.rb`
-   - `app/controllers/glossary_controller.rb`
+```ruby
+AutoGlossary.configure do |config|
+  # Wikipedia glossary URL (default: Glossary of mycology)
+  config.glossary_url = "https://en.wikipedia.org/wiki/Glossary_of_mycology"
 
-2. **Frontend:**
-   - `app/javascript/controllers/glossary_controller.js`
-   - `app/assets/stylesheets/glossary.css`
+  # Cache expiration time in seconds (default: 24 hours)
+  config.cache_expiration = 86_400
 
-3. **Add routes** to `config/routes.rb`:
-   ```ruby
-   get 'glossary/definition', to: 'glossary#definition', defaults: { format: :json }
-   get 'glossary', to: 'glossary#index'  # Optional: browse all terms
-   ```
-
-4. **Include in layout** (`app/views/layouts/application.html.erb`):
-   ```erb
-   <body data-controller="glossary">
-   ```
-
-5. **Use in views:**
-   ```erb
-   <%= mark_glossary_terms(@article.body) %>
-   ```
+  # Enable/disable caching (default: true)
+  config.enable_caching = true
+end
+```
 
 ## 📖 Usage
 
@@ -126,20 +146,24 @@ rails test
 
 ## 🗂️ Project Structure
 
+This repository includes a Rails demo app used to showcase the gem.
+
 ```
 app/
 ├── controllers/
-│   ├── glossary_controller.rb    # API endpoint for definitions
-│   └── pages_controller.rb        # Demo page
-├── helpers/
-│   └── glossary_helper.rb         # Text processing & term marking
+│   └── pages_controller.rb        # Home, demo, docs pages
 ├── javascript/controllers/
 │   └── glossary_controller.js     # Tooltips & modals (Stimulus)
-├── services/
-│   └── wikipedia_glossary_service.rb  # Wikipedia API integration
 └── views/
-    └── pages/
-        └── demo.html.erb           # Live demo page
+    ├── pages/
+    │   ├── home.html.erb           # Landing page
+    │   ├── demo.html.erb           # Live demo page
+    │   └── gem_docs.html.erb       # Gem documentation page
+    └── glossary/
+        └── index.html.erb          # Glossary browsing page used in the demo
+
+config/
+└── routes.rb                       # Mounts the engine at /glossary
 
 public/
 └── index.html                      # Landing page (static)
@@ -149,6 +173,7 @@ public/
 
 - Landing page: [auto-glossary.com](https://auto-glossary.com) 
 - Demo: Run locally at `http://localhost:3001/demo`
+- RubyGems: [auto_glossary](https://rubygems.org/gems/auto_glossary)
 
 ## 🤝 Contributing
 
@@ -156,7 +181,7 @@ Contributions are welcome! Feel free to:
 - Report bugs or request features via [GitHub Issues](https://github.com/mrdbidwill/auto-glossary/issues)
 - Submit pull requests
 - Adapt this code for your own glossary sources (botany, medicine, etc.)
-- Help extract this into a standalone gem
+- Help improve the gem (features, docs, tests)
 
 ## 📧 Contact
 
@@ -199,7 +224,6 @@ Users should still verify critical information, but for educational and referenc
 
 ## 🔮 Future Plans
 
-- Extract into standalone Ruby gem
 - Support for multiple glossary sources
 - Configurable Wikipedia pages (botany, medicine, etc.)
 - Admin interface for custom term management
