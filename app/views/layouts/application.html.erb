@@ -24,7 +24,9 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "glossary", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <%= adsense_script_tag %>
+    <% if adsense_allowed_for_request? %>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8323362126637830" crossorigin="anonymous"></script>
+    <% end %>
   </head>
 
   <body data-controller="glossary">
