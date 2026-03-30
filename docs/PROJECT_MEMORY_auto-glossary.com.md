@@ -1,0 +1,32 @@
+# Project Memory - auto-glossary.com
+
+Purpose: continuity log for monetization planning when direct repo access is unavailable.
+
+## 2026-03-11
+- Scope intentionally minimal:
+  - AdSense integration only
+  - no large image-storage migration needed for current usage
+- Ad policy:
+  - public pages may show ads
+  - authenticated pages must never load AdSense script
+- Next implementation entry required in auto-glossary.com repo when accessible:
+  - add layout-level AdSense toggle by auth state
+  - verify ad density and policy compliance for glossary pages
+
+## 2026-03-12
+- Reviewed after `myDNAobv` R2 production rollout.
+- No scope change for `auto-glossary.com`: remain on AdSense-only implementation plan.
+- RubyMine handoff doc revalidated; still no storage-migration scope added.
+
+## 2026-03-14
+- AdSense integration implemented in repo behind flags (public-only). Includes helper gating via `adsense_authenticated?`, script injection in layout, inline/footer slot partials, and tests.
+- Privacy policy page added with opt-out controls; GPC is honored and sets an opt-out cookie.
+- `public/ads.txt` placeholder added; must be replaced with live publisher record before approval.
+- Remaining ops items: privacy/cookie disclosure review, CSP review if enforcing.
+
+## 2026-03-30
+- Shared-host runtime defaults applied:
+  - `config/puma.rb` now enforces integer parsing for thread count.
+  - `config/puma.rb` now stays single-process by default; workers enable only when `WEB_CONCURRENCY>1`.
+  - `config/deploy.yml` now sets baseline `RAILS_MAX_THREADS: 3` and `WEB_CONCURRENCY: 1`.
+- Intent: keep predictable low resource usage for glossary traffic while preserving off-peak headroom for heavy PDF rebuild pipeline on shared VPS.

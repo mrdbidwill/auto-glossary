@@ -17,6 +17,9 @@ Rails.application.routes.draw do
 
   # Gem documentation page
   get "docs", to: "pages#gem_docs"
+  get "privacy", to: "pages#privacy"
+  post "privacy/opt_out", to: "pages#opt_out"
+  post "privacy/opt_in", to: "pages#opt_in"
 
   # Defines the root path route ("/")
   root "pages#home"
