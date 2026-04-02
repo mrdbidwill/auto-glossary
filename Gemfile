@@ -57,7 +57,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   # Use SQLite for test environment (no setup needed)
-  gem "sqlite3", "~> 2.0"
+  gem "sqlite3", "~> 2.9"
 end
 
 group :development do
