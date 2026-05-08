@@ -7,6 +7,24 @@
     </p>
   </div>
 
+  <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+    <h2 class="text-3xl font-semibold mb-4">How This Site Adds Publisher Value</h2>
+    <div class="space-y-4 text-gray-700">
+      <p>
+        Auto-Glossary is not just a copy of source definitions. This project adds implementation guidance, integration patterns,
+        and practical UI behavior that developers can reuse in production Rails apps.
+      </p>
+      <p>
+        The glossary terms come from Wikipedia (with attribution), while this documentation focuses on original engineering context:
+        architecture decisions, setup trade-offs, accessibility behavior, and deployment practices.
+      </p>
+      <p>
+        We keep advertising limited to this long-form documentation screen so ads do not appear on utility pages or lightweight
+        navigation states.
+      </p>
+    </div>
+  </div>
+
   <!-- Installation Section -->
   <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
     <h2 class="text-3xl font-semibold mb-4">Installation</h2>
@@ -56,6 +74,8 @@ rails generate auto_glossary:install</code></pre>
       </div>
     </div>
   </div>
+
+  <%= render "shared/adsense_inline" %>
 
   <!-- Configuration Section -->
   <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
@@ -154,4 +174,6 @@ end</code></pre>
       <a href="/" class="text-blue-600 hover:text-blue-800 font-semibold">← Back to Home</a>
     </div>
   </div>
+
+  <%= render "shared/adsense_footer" %>
 </div>

@@ -35,23 +35,32 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     with_adsense_authenticated(false) do
       get demo_url
       assert_response :success
+      assert_not_includes @response.body, "adsbygoogle"
+      assert_not_includes @response.body, "pagead/js/adsbygoogle.js"
+    end
+  end
+
+  test "docs page includes adsense when anonymous" do
+    with_adsense_authenticated(false) do
+      get docs_url
+      assert_response :success
       assert_includes @response.body, "adsbygoogle"
       assert_includes @response.body, "pagead/js/adsbygoogle.js"
     end
   end
 
-  test "demo page excludes adsense when session present" do
+  test "docs page excludes adsense when session present" do
     with_adsense_authenticated(true) do
-      get demo_url
+      get docs_url
       assert_response :success
       assert_not_includes @response.body, "pagead/js/adsbygoogle.js"
       assert_not_includes @response.body, "adsbygoogle"
     end
   end
 
-  test "demo page excludes adsense when opt-out cookie present" do
+  test "docs page excludes adsense when opt-out cookie present" do
     with_adsense_authenticated(false) do
-      get demo_url, headers: { "Cookie" => "adsense_opt_out=true" }
+      get docs_url, headers: { "Cookie" => "adsense_opt_out=true" }
       assert_response :success
       assert_not_includes @response.body, "pagead/js/adsbygoogle.js"
       assert_not_includes @response.body, "adsbygoogle"
@@ -67,5 +76,17 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     get privacy_url
     assert_response :success
     assert_select "h1", text: /Privacy Policy/i
+  end
+
+  test "demo page is marked noindex" do
+    get demo_url
+    assert_response :success
+    assert_select "meta[name='robots'][content='noindex, nofollow']", count: 1
+  end
+
+  test "privacy page is marked noindex" do
+    get privacy_url
+    assert_response :success
+    assert_select "meta[name='robots'][content='noindex, nofollow']", count: 1
   end
 end
