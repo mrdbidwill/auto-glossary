@@ -40,9 +40,11 @@ module AutoGlossary
     config.generators.system_tests = nil
 
     # AdSense configuration (flag-driven, public-only).
-    config.x.adsense.enabled = ActiveModel::Type::Boolean.new.cast(
-      ENV.fetch("ADSENSE_ENABLED", "false")
-    )
+    # Disabled — set to false unconditionally. To re-enable, restore the ENV-driven line below.
+    config.x.adsense.enabled = false
+    # config.x.adsense.enabled = ActiveModel::Type::Boolean.new.cast(
+    #   ENV.fetch("ADSENSE_ENABLED", "false")
+    # )
     config.x.adsense.client_id = ENV["ADSENSE_CLIENT_ID"]
     config.x.adsense.slots = ActiveSupport::OrderedOptions.new
     config.x.adsense.slots.inline = ENV["ADSENSE_SLOT_INLINE"]
